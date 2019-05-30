@@ -1,5 +1,5 @@
 module.exports={
-  port: 8081,
+  port: process.env.PORT || 8081,
 
   restartNotification:{
     port: 7777,
