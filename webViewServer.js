@@ -40,7 +40,7 @@ function createServer(server) {
       var data
       try{
         // Question: Why is this necessary should the message be json
-        if(message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
+        if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
           data = {cardId: message};
         } else {
           data = JSON.parse(message);
