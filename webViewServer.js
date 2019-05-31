@@ -39,7 +39,12 @@ function createServer(server) {
       console.log('webViewServer.js: message',message);
       var data
       try{
-        data = JSON.parse(message);
+        // Question: Why is this necessary should the message be json
+        if(message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
+          data = {cardId: message};
+        } else {
+          data = JSON.parse(message);
+        }
       }catch(e){
         console.log('receive: '+message,data,e)
         return
