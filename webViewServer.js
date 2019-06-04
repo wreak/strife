@@ -40,11 +40,13 @@ function createServer(server) {
       var data
       try{
         // Question: Why is this necessary should the message be json
-        // if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
-        //   data = {cardId: message};
-        // } else {
+        if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
+          data = {cardId: message};
+        } else {
+          var encoded = message.toString('utf8');
+          console.log('encoded', encoded);
           data = JSON.parse(message);
-        // }
+        }
       }catch(e){
         console.log('receive: '+message,data,e)
         return
