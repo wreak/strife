@@ -43,7 +43,7 @@ function createServer(server) {
         if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
           data = {cardId: message};
         } else {
-          var encoded = message.toString('utf8');
+          var encoded = message.toString('hex');
           console.log('encoded', encoded);
           data = JSON.parse(message);
         }
