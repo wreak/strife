@@ -36,22 +36,23 @@ function createServer(server) {
     console.log('webViewServer.js: connection');
     var cardId = null
     ws.on('message', function(message) {
-      console.log('webViewServer.js: message',message);
+      console.log('webViewServer.js::::::::::::::::::::::::::::::::::::::::: message',message);
       var data
       try{
         // Question: Why is this necessary should the message be json
-        if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
-          data = {cardId: message};
-        } else if (!message) {
-          console.log('ping');
-          return;
-        } else {
-          var encoded = message.toString('hex');
-          console.log('encoded', encoded);
-          data = JSON.parse(message);
-        }
+        // if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
+        //   data = {cardId: message};
+        // } else if (!message) {
+        //   console.log('ping');
+        //   return;
+        // } else {
+        //   var encoded = message.toString('hex');
+        //   console.log('encoded', encoded);
+        //   data = JSON.parse(message);
+        // }
+        data = JSON.parse(message);
       }catch(e){
-        console.log('receive: '+message,data,e)
+        // console.log('receive: '+message,data,e)
         return
       }
       var obj = cmdList[data._id]
