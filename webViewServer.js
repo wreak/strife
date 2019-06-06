@@ -42,6 +42,9 @@ function createServer(server) {
         // Question: Why is this necessary should the message be json
         if(typeof message === 'string' && message.match(/^\w\w\w-\w\w\w-\w\w\w\w\w$/)){
           data = {cardId: message};
+        } else if (!message) {
+          console.log('ping');
+          return;
         } else {
           var encoded = message.toString('hex');
           console.log('encoded', encoded);
