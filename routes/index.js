@@ -11,6 +11,7 @@ router.post('/command/:cardId', function(req, res) {
       res.status(500).send(err.message)
       console.error(new Date(),cardId, err);
     }else
+      console.log('receivedData', receivedData);
       res.json(receivedData)
   });
 });
