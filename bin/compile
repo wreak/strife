@@ -23,6 +23,9 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
   "updates": [
     {
+      "buildpack": "https://github.com/heroku/heroku-buildpack-multi-procfile"
+    },
+    {
       "buildpack": "https://github.com/heroku/heroku-buildpack-ruby"
     }
   ]
@@ -38,6 +41,9 @@ else
 curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
   "updates": [
+    {
+      "buildpack": "https://github.com/heroku/heroku-buildpack-multi-procfile"
+    },
     {
       "buildpack": "https://github.com/heroku/heroku-buildpack-nodejs"
     }
