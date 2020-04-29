@@ -14,13 +14,35 @@ APP_NAME=$(cat "${ENV_DIR}/HEROKU_APP_NAME")
 
 echo "APP_NAME ${APP_NAME}"
 
-heroku run 'heroku auth:token' --app "${APP_NAME}"
 if  [[ $APP_NAME == calmaity-api* ]] ;
 then
-  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
+#  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
+
+curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
+  -d '{
+  "updates": [
+    {
+      "buildpack": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ]
+}' \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/vnd.heroku+json; version=3"
+
+
   echo "set ruby"
 else
-  heroku buildpacks:set heroku/nodejs --app "${APP_NAME}"
+#  heroku buildpacks:set heroku/nodejs --app "${APP_NAME}"
+curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
+  -d '{
+  "updates": [
+    {
+      "buildpack": "https://github.com/heroku/heroku-buildpack-nodejs"
+    }
+  ]
+}' \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/vnd.heroku+json; version=3"
   echo "set node"
 fi
 
