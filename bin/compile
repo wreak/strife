@@ -9,4 +9,8 @@ echo "Compiling Strife"
 curl -s https://cli-assets.heroku.com/heroku-linux-x64.tar.gz | tar xz || exit $?
 export PATH=$PATH:./heroku/bin/ || exit $?
 
-heroku buildpacks:set heroku/ruby
+
+APP_NAME=$(cat "${ENV_DIR}/HEROKU_APP_NAME")
+
+echo "APP_NAME ${APP_NAME}"
+heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
