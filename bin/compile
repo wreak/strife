@@ -6,5 +6,7 @@ ENV_DIR=$3
 
 echo "Compiling Strife"
 
-rm "$BUILD_DIR/Gemfile"
+curl -s https://cli-assets.heroku.com/heroku-linux-x64.tar.gz | tar xz || exit $?
+export PATH=$PATH:./heroku/bin/ || exit $?
 
+heroku buildpacks:set heroku/ruby
