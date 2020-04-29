@@ -15,7 +15,7 @@ HEROKU_API_KEY=$(cat "${ENV_DIR}/HEROKU_API_KEY")
 
 echo "APP_NAME ${APP_NAME}"
 
-if  [[ $APP_NAME == calmaity-api* ]] ;
+if  [[ $APP_NAME == calamity-api* ]] ;
 then
 #  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
 
