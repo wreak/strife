@@ -13,4 +13,13 @@ export PATH=$PATH:./heroku/bin/ || exit $?
 APP_NAME=$(cat "${ENV_DIR}/HEROKU_APP_NAME")
 
 echo "APP_NAME ${APP_NAME}"
-heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
+
+if  [[ $APP_NAME == calmaity-api* ]] ;
+then
+  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
+  echo "set ruby"
+else
+  heroku buildpacks:set heroku/nodejs --app "${APP_NAME}"
+  echo "set node"
+fi
+
