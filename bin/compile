@@ -26,6 +26,9 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
       "buildpack": "https://github.com/heroku/heroku-buildpack-multi-procfile"
     },
     {
+      "buildpack": "https://github.com/mojodna/heroku-buildpack-jemalloc.git"
+    },
+    {
       "buildpack": "https://github.com/heroku/heroku-buildpack-ruby"
     }
   ]
