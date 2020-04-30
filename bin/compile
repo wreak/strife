@@ -15,7 +15,7 @@ HEROKU_API_KEY=$(cat "${ENV_DIR}/HEROKU_API_KEY")
 
 echo "APP_NAME ${APP_NAME}"
 
-if  [[ $APP_NAME == calamity-api* ]] ;
+if  [[ $APP_NAME == calamity-api-* ]] ;
 then
 #  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
 
@@ -37,7 +37,8 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -H "Accept: application/vnd.heroku+json; version=3" \
   -H "Authorization: Bearer $HEROKU_API_KEY"
 
-else
+else if  [[ $APP_NAME == calamity-* ]]
+then
 #  heroku buildpacks:set heroku/nodejs --app "${APP_NAME}"
 curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
@@ -53,6 +54,7 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -H "Content-Type: application/json" \
   -H "Accept: application/vnd.heroku+json; version=3" \
   -H "Authorization: Bearer $HEROKU_API_KEY"
-
+else
+echo "Invalid app name"
 fi
 
