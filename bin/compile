@@ -59,8 +59,10 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   echo "set node"
 fi
 
+echo 'delete'
 curl -n -X DELETE https://api.heroku.com/apps/$APP_NAME/dynos \
   -H "Content-Type: application/json" \
   -H "Accept: application/vnd.heroku+json; version=3" \
   -H "Authorization: Bearer $HEROKU_API_KEY"
+echo 'end delete'
 
