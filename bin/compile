@@ -18,15 +18,15 @@ echo "APP_NAME ${APP_NAME}"
 if  [[ $APP_NAME == calamity-api-* ]] ;
 then
 #  heroku buildpacks:set heroku/ruby --app "${APP_NAME}"
+#    {
+#      "buildpack": "https://github.com/mojodna/heroku-buildpack-jemalloc.git"
+#    },
 
 curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
   "updates": [
     {
       "buildpack": "https://github.com/heroku/heroku-buildpack-multi-procfile"
-    },
-    {
-      "buildpack": "https://github.com/mojodna/heroku-buildpack-jemalloc.git"
     },
     {
       "buildpack": "heroku-community/nginx"
