@@ -36,7 +36,7 @@ curl -n -X PATCH https://api.heroku.com/apps/$APP_NAME/config-vars \
   -d '{
   "FE_URL": "'$FE_URL'",
   "REACT_APP_API_HOST": "'$BE_HOST'",
-  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'",
+  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'"
 }' \
   -H "Content-Type: application/json" \
   -H "Accept: application/vnd.heroku+json; version=3" \
@@ -73,7 +73,7 @@ SUBSCRIPTION_URL="wss://${BE_APP_NAME}.herokuapp.com/cable"
 curl -n -X PATCH https://api.heroku.com/apps/$APP_NAME/config-vars \
   -d '{
   "REACT_APP_API_HOST": "'$BE_HOST'",
-  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'",
+  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'"
 }' \
   -H "Content-Type: application/json" \
   -H "Accept: application/vnd.heroku+json; version=3" \
