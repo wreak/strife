@@ -27,6 +27,21 @@ curl -n -X POST https://api.heroku.com/apps/$APP_NAME/addons \
   -H "Accept: application/vnd.heroku+json; version=3" \
   -H "Authorization: Bearer $HEROKU_API_KEY"
 
+FE_APP_NAME="${APP_NAME/calamity-api/calamity}"
+FE_URL="https://${FE_APP_NAME}.herokuapp.com"
+BE_HOST="${APP_NAME}.herokuapp.com"
+SUBSCRIPTION_URL="wss://${APP_NAME}.herokuapp.com/cable"
+
+curl -n -X PATCH https://api.heroku.com/apps/$APP_NAME/config-vars \
+  -d '{
+  "FE_URL": "'$FE_URL'",
+  "REACT_APP_API_HOST": "'$BE_HOST'",
+  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'",
+}' \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/vnd.heroku+json; version=3" \
+  -H "Authorization: Bearer $HEROKU_API_KEY"
+
 curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
   "updates": [
@@ -50,6 +65,20 @@ curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
 
 elif  [[ $APP_NAME == calamity-* ]] ;
 then
+
+BE_APP_NAME="${APP_NAME/calamity/calamity-api}"
+BE_HOST="${BE_APP_NAME}.herokuapp.com"
+SUBSCRIPTION_URL="wss://${BE_APP_NAME}.herokuapp.com/cable"
+
+curl -n -X PATCH https://api.heroku.com/apps/$APP_NAME/config-vars \
+  -d '{
+  "REACT_APP_API_HOST": "'$BE_HOST'",
+  "REACT_APP_SUBSCRIPTION": "'$SUBSCRIPTION_URL'",
+}' \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/vnd.heroku+json; version=3" \
+  -H "Authorization: Bearer $HEROKU_API_KEY"
+
 #  heroku buildpacks:set heroku/nodejs --app "${APP_NAME}"
 curl -n -X PUT https://api.heroku.com/apps/$APP_NAME/buildpack-installations \
   -d '{
