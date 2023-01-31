@@ -21,7 +21,7 @@ then
 
 curl -n -X POST https://api.heroku.com/apps/$APP_NAME/addons \
   -d '{
-  "plan": "heroku-redis:hobby-dev"
+  "plan": "heroku-redis:mini"
 }' \
   -H "Content-Type: application/json" \
   -H "Accept: application/vnd.heroku+json; version=3" \
